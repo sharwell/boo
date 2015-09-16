@@ -121,6 +121,7 @@ namespace Boo.Lang.ParserV4
             var parser = new BooParser(tokens);
             parser.BuildParseTree = true;
             var tree = parser.start();
+            BooParser.Visualize(tree, tokens);
             var visitor = new BooParserAstBuilderListener(_context.CompileUnit, inputName);
             visitor.VisitStart(tree);
             //BooParser.ParseModule(settings, _context.CompileUnit, inputName, reader);

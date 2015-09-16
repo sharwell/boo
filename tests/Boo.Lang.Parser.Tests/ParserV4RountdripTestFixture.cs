@@ -4,6 +4,7 @@ namespace Boo.Lang.Parser.Tests
 	using NUnit.Framework;
 
 	[TestFixture]
+	[RequiresSTA]
 	public class ParserV4RoundtripTestFixture : AbstractParserTestFixture
 	{
 		void RunCompilerTestCase(string fname)
