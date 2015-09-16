@@ -14,6 +14,16 @@
     <UsePartialTypes>false</UsePartialTypes>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <NoStdLib>True</NoStdLib>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <Strict>False</Strict>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <Pipeline>delay</Pipeline>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -27,10 +37,11 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>Full</DebugType>
     <genwarnings>false</genwarnings>
     <culture />
     <ducky>false</ducky>
+    <Ducky>false</Ducky>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -71,11 +82,19 @@
     <Folder Include="IO\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Boo.Lang.Compiler\Boo.Lang.Compiler.csproj">
+      <Project>{7EAC855C-AB70-4CEB-9B9A-8B60712277E2}</Project>
+      <Name>Boo.Lang.Compiler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Boo.Lang.Extensions\Boo.Lang.Extensions.booproj">
+      <Project>{48E18542-C08D-4BAF-99D0-BA2882259F40}</Project>
+      <Name>Boo.Lang.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Boo.Lang.Parser\Boo.Lang.Parser.csproj">
       <Project>{BA0306B9-A10B-4D29-B219-0DFBE24741E8}</Project>
       <Name>Boo.Lang.Parser</Name>
     </ProjectReference>
     <!-- <Reference Include="Boo.Lang.Parser, Version=2.0.9.4, Culture=neutral, PublicKeyToken=32c39770e9a21a67" /> -->
   </ItemGroup>
-  <Import Project="$(BooToolPath)\Boo.Microsoft.Build.targets" />
+  <Import Project="$(BooBinPath)\Boo.Microsoft.Build.targets" />
 </Project>

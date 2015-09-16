@@ -88,7 +88,11 @@
     <Reference Include="Antlr4.Runtime">
       <HintPath>..\packages\Antlr4.Runtime.4.5-alpha002\lib\net40-client\Antlr4.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="antlr\antlr.collections.impl\ASTArray.cs" />
@@ -213,11 +217,17 @@
     <Compile Include="CodeFactory.cs" />
     <Compile Include="DocStringFormatter.cs" />
     <Compile Include="ErrorPattern.cs" />
+    <Compile Include="FlowDocumentExtensions.cs" />
     <Compile Include="GeneratedErrorPatterns.cs" />
     <Compile Include="OperatorParser.cs" />
     <Compile Include="ParserSettings.cs" />
     <Compile Include="PrimitiveParser.cs" />
     <Compile Include="SourceLocationFactory.cs" />
+    <Compile Include="TreeViewModel.cs" />
+    <Compile Include="TreeVisualizerControl.xaml.cs">
+      <DependentUpon>TreeVisualizerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeVisualizerViewModel.cs" />
     <Compile Include="Util\EndTokenStreamFilter.cs" />
     <Compile Include="Util\IndentTokenStreamFilter.cs" />
     <Compile Include="Util\IndentTokenStreamFilterV4.cs" />
@@ -262,6 +272,12 @@
       <Project>{A359E52E-5E90-40F3-A5F0-257FE2D545EE}</Project>
       <Name>Boo.Lang</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="TreeVisualizerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
