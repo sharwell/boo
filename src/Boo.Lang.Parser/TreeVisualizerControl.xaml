@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Boo.Lang.Parser.TreeVisualizerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <HierarchicalDataTemplate x:Key="astItemTemplate"
+                                  x:Name="astItemTemplate"
+                                  ItemsSource="{Binding Path=Children}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Width="Auto" Height="Auto" Text="{Binding Path=Title, Mode=OneTime}" HorizontalAlignment="Left">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsNonTerminal, Mode=OneTime}" Value="True">
+                                    <Setter Property="Foreground" Value="Green"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsTrivia, Mode=OneTime}" Value="True">
+                                    <Setter Property="Foreground" Value="Brown"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                            <Setter Property="Foreground" Value="Blue"/>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TreeView Name="AstTreeView" Grid.Column="0" Grid.ColumnSpan="1"
+                  ItemTemplate="{StaticResource astItemTemplate}"
+                  ItemsSource="{Binding Path=TreeViewModel.Children}"
+                  SelectedItemChanged="HandleAstTreeViewSelectedItemChanged" />
+
+        <GridSplitter Width="5" Grid.Column="1" Grid.ColumnSpan="1" ResizeBehavior="PreviousAndNext" />
+
+        <RichTextBox Grid.Column="2" Grid.ColumnSpan="1" Name="SourceTextBox" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+    </Grid>
+</UserControl>
