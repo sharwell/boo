@@ -11,19 +11,7 @@ namespace Boo.Lang.Parser.Tests
 	{
 		protected Boo.Lang.Compiler.BooCompiler _compiler;
 		protected Boo.Lang.Compiler.BooCompiler _compilerV4;
-		
-		[TestFixtureSetUp]
-		public void SetUpFixture()
-		{
-			_compiler = new Boo.Lang.Compiler.BooCompiler();
-			_compiler.Parameters.OutputWriter = new StringWriter();
-			_compiler.Parameters.Pipeline = CreatePipeline();
-			
-			_compilerV4 = new Boo.Lang.Compiler.BooCompiler();
-			_compilerV4.Parameters.OutputWriter = new StringWriter();
-			_compilerV4.Parameters.Pipeline = CreatePipelineV4();
-		}
-		
+
 		protected virtual Boo.Lang.Compiler.CompilerPipeline CreatePipeline()
 		{
 			return new Boo.Lang.Compiler.Pipelines.ParseAndPrint();
@@ -39,6 +27,14 @@ namespace Boo.Lang.Parser.Tests
 		[SetUp]
 		public void SetUp()
 		{
+			_compiler = new Boo.Lang.Compiler.BooCompiler();
+			_compiler.Parameters.OutputWriter = new StringWriter();
+			_compiler.Parameters.Pipeline = CreatePipeline();
+
+			_compilerV4 = new Boo.Lang.Compiler.BooCompiler();
+			_compilerV4.Parameters.OutputWriter = new StringWriter();
+			_compilerV4.Parameters.Pipeline = CreatePipelineV4();
+
 			_compiler.Parameters.Input.Clear();
 			((StringWriter)_compiler.Parameters.OutputWriter).GetStringBuilder().Length = 0;
 		}
